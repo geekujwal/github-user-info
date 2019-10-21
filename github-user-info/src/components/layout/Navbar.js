@@ -1,27 +1,36 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-class Navbar extends Component {
-  static defaultProps = {
-    title: "Github Finder",
-    iconClassName: "fab fa-github 3x"
-  };
-  render() {
-    return (
-      <Fragment>
-        <nav>
-          <div className="container">
-            <div className="nav-wrapper">
-              <i className={this.props.iconClassName}></i> {this.props.title}
-            </div>
+const Navbar = props => {
+  const { iconClassName, title } = props;
+  return (
+    <Fragment>
+      <nav>
+        <div className="container">
+          <div className="nav-wrapper">
+            <i className={iconClassName}></i> {title}
+            <ul className="right hide-on-med-and-down">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </Fragment>
-    );
-  }
-}
+        </div>
+      </nav>
+    </Fragment>
+  );
+};
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   iconClassName: PropTypes.string.isRequired
 };
+Navbar.defaultProps = {
+  title: "Github Finder",
+  iconClassName: "fab fa-github 3x"
+};
+
 export default Navbar;
