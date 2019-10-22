@@ -2,10 +2,12 @@ import React, { Fragment, Component } from "react";
 import Search from "../users/Search";
 import Users from "../users/Users";
 import axios from "axios";
+import Alert from "../layout/Alert";
 class Home extends Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   };
   // async componentDidMount() {
   //   this.setState({
@@ -25,6 +27,16 @@ class Home extends Component {
       loading: false
     });
   };
+  //Set Alert
+  setAlert = (msg, type) => {
+    this.setState({
+      alert: {
+        msg,
+        type
+      }
+    });
+    setTimeout(() => this.setState({ alert: null }), 1000);
+  };
   searchUsers = async text => {
     this.setState({
       loading: true
@@ -40,9 +52,11 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
+        <Alert alert={this.state.alert} />
         <Search
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
+          setAlert={this.setAlert}
           showClear={this.state.users.length > 0 ? true : false}
         />
         <Users loading={this.state.loading} users={this.state.users} />
