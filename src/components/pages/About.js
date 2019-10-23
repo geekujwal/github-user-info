@@ -7,6 +7,9 @@ class About extends Component {
         <h1>About This App</h1>
         <p>App to search Github users</p>
         <p>Version: 1.0.0</p>
+        <p>
+          developed by: <strong>Ujwal</strong>
+        </p>
       </Fragment>
     );
   }

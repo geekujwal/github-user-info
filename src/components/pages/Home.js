@@ -6,6 +6,7 @@ import Alert from "../layout/Alert";
 class Home extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null
   };
@@ -21,6 +22,7 @@ class Home extends Component {
   //     users: res.data
   //   });
   // }
+
   clearUsers = e => {
     this.setState({
       users: [],
@@ -48,6 +50,17 @@ class Home extends Component {
       loading: false,
       users: res.data.items
     });
+  };
+  getUser = async username => {
+    // this.setState({ loading: true });
+    // const res = await axios.get(
+    //   `https://api.github.com/search/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
+    // );
+    // this.setState({
+    //   loading: false,
+    //   user: res.data
+    // });
+    console.log(username);
   };
   render() {
     return (
