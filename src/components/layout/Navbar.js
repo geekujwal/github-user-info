@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 const Navbar = props => {
   const { iconClassName, title } = props;
@@ -12,10 +10,10 @@ const Navbar = props => {
             <i className={iconClassName}></i> {title}
             <ul className="right hide-on-med-and-down">
               <li>
-                <Link to="/">Home</Link>
+                <a href="/">Home</a>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <a href="/about">About</a>
               </li>
             </ul>
           </div>
@@ -24,10 +22,7 @@ const Navbar = props => {
     </Fragment>
   );
 };
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  iconClassName: PropTypes.string.isRequired
-};
+
 Navbar.defaultProps = {
   title: "Github Finder",
   iconClassName: "fab fa-github 3x"

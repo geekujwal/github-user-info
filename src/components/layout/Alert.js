@@ -10,5 +10,8 @@ const Alert = ({ alert }) => {
     )
   );
 };
+Alert.defaultProps = {
+  alert: null
+};
 
 export default Alert;

@@ -1,81 +1,35 @@
-import React, { Fragment, Component } from "react";
-import Search from "../users/Search";
+import React, { Component, Fragment } from "react";
+import NavBar from "../layout/NavBar";
+import SearchUser from "../users/SearchUser";
 import Users from "../users/Users";
-import axios from "axios";
-import Alert from "../layout/Alert";
-class Home extends Component {
-  state = {
-    users: [],
-    user: {},
-    loading: false,
-    alert: null
-  };
-  // async componentDidMount() {
-  //   this.setState({
-  //     loading: true
-  //   });
-  //   const res = await axios.get(
-  //     `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
-  //   );
-  //   this.setState({
-  //     loading: false,
-  //     users: res.data
-  //   });
-  // }
 
-  clearUsers = e => {
-    this.setState({
-      users: [],
-      loading: false
-    });
+export default class Home extends Component {
+  searchUsers = text => {
+    console.log(text);
   };
-  //Set Alert
-  setAlert = (msg, type) => {
-    this.setState({
-      alert: {
-        msg,
-        type
-      }
-    });
-    setTimeout(() => this.setState({ alert: null }), 1000);
+  searsetAlertchUser = text => {
+    console.log(text);
   };
-  searchUsers = async text => {
-    this.setState({
-      loading: true
-    });
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
-    );
-    this.setState({
-      loading: false,
-      users: res.data.items
-    });
+  showClear = text => {
+    console.log(text);
   };
-  getUser = async username => {
-    // this.setState({ loading: true });
-    // const res = await axios.get(
-    //   `https://api.github.com/search/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
-    // );
-    // this.setState({
-    //   loading: false,
-    //   user: res.data
-    // });
-    console.log(username);
-  };
+
   render() {
     return (
       <Fragment>
-        <Alert alert={this.state.alert} />
-        <Search
-          searchUsers={this.searchUsers}
-          clearUsers={this.clearUsers}
-          setAlert={this.setAlert}
-          showClear={this.state.users.length > 0 ? true : false}
+        <NavBar
+          title="Github Profile Finder"
+          iconClassName="fab fa-github 3x"
         />
-        <Users loading={this.state.loading} users={this.state.users} />
+        <div className="container">
+          <SearchUser
+            searchUsers={this.searchUsers}
+            clearUsers={this.clearUsers}
+            setAlert={this.setAlert}
+          />
+          <Users />
+        </div>
       </Fragment>
     );
   }
 }
-
-export default Home;
