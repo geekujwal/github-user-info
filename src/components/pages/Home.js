@@ -27,8 +27,8 @@ export default class Home extends Component {
             clearUsers={this.clearUsers}
             setAlert={this.setAlert}
           />
-          <Users />
         </div>
+        <Users />
       </Fragment>
     );
   }

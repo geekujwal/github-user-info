@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchSingleUser } from "../../actions/searchUserAction";
+import Spinner from "../layout/Spinner";
 class User extends Component {
   componentDidMount() {
     this.props.fetchSingleUser(this.props.match.params.login);
@@ -22,8 +23,12 @@ class User extends Component {
       public_repos,
       public_gists
     } = this.props.user;
-    return (
-      <Fragment>
+    return this.props.loading ? (
+      <div className="container">
+        <Spinner />
+      </div>
+    ) : (
+      <div className="container">
         <Link to="/" className="btn btn-light">
           Back To Search
         </Link>
@@ -87,7 +92,7 @@ class User extends Component {
           <div className="badge badge-light">Public Repos: {public_repos}</div>
           <div className="badge badge-dark">Public Gists: {public_gists}</div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

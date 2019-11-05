@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-
+import { Link } from "react-router-dom";
 const Navbar = props => {
   const { iconClassName, title } = props;
   return (
@@ -10,10 +10,10 @@ const Navbar = props => {
             <i className={iconClassName}></i> {title}
             <ul className="right hide-on-med-and-down">
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/about">About</a>
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </div>
